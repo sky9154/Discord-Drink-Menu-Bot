@@ -78,6 +78,7 @@ Discord Drink Menu Bot/
 │   ├── functions/handlers/      # Command, event, and component handlers
 │   └── bot.js                   # Bot entry point
 └── package.json
+```
 
 ## License and Menu Images
 
