@@ -1,14 +1,14 @@
 {
   "name": "drink-menu-bot",
-  "version": "1.0.0",
-  "description": "Discord 手搖飲料菜單搜尋機器人",
+  "version": "1.0.1",
+  "description": "A Discord slash-command bot for searching and browsing bubble tea shop menus, displaying menu images, selecting a random entry, and letting users manage menu links.",
   "main": "./src/bot.js",
   "scripts": {
     "start": "node ."
   },
   "keywords": [],
   "author": "oF",
-  "repository": "github:sky9154/drink-menu-bot",
+  "repository": "github:sky9154/Discord-Drink-Menu-Bot",
   "license": "MIT",
   "engines": {
     "node": "18.4.0"

@@ -10,11 +10,11 @@ module.exports = {
         const aboutEmbed = new MessageEmbed()
             .setColor('#FFFFFF')
             .setTitle('喝個搖搖')
-            .setURL('https://github.com/sky9154/drink-menu-bot')
+            .setURL('https://github.com/sky9154/Discord-Drink-Menu-Bot')
             .setDescription('Discord 手搖飲料菜單搜尋機器人')
             .addFields({
                     name: 'Bot Name',
-                    value: `\`${client.user.tag}\``, 
+                    value: `\`${client.user.tag}\``,
                     inline: true
                 }, {
                     name: 'NodeJS',
@@ -25,18 +25,18 @@ module.exports = {
                     value: `\`${package.dependencies['discord.js'].replace('^', 'v')}\``,
                     inline: true
                 })
-            .setImage('https://cdn.discordapp.com/attachments/1001972664723832915/1001973391248605214/drink-menu-bot.png')
+            .setImage('docs/images/logo.png')
             .setTimestamp()
-            .setFooter({ 
-                text: 'Copyright © 2022 oF', 
-                iconURL: 'https://cdn.discordapp.com/attachments/858423378029314088/1005732194532216842/author.png' 
+            .setFooter({
+                text: 'Copyright © 2022 oF',
+                iconURL: 'https://cdn.discordapp.com/attachments/858423378029314088/1005732194532216842/author.png'
             });
 
 		const aboutButtons = new MessageActionRow()
         .addComponents(
             new MessageButton()
                 .setLabel('𝗚𝗜𝗧𝗛𝗨𝗕')
-                .setURL('https://github.com/sky9154/drink-menu-bot')
+                .setURL('https://github.com/sky9154/Discord-Drink-Menu-Bot')
                 .setStyle('LINK')
                 .setEmoji('<a:blobreach:983792417998266468>'),
 

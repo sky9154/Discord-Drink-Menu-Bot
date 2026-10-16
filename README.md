@@ -1,92 +1,84 @@
-# Discord Bot - 喝個搖搖
-![Platform Version Support](https://img.shields.io/node/v/discord.js)
-![GitHub license](https://img.shields.io/badge/license-MIT_License-blue.svg)
+# Discord Drink Menu Bot
 
-[<img src="https://cdn.discordapp.com/attachments/1001972664723832915/1001973391248605214/drink-menu-bot.png" width="500"/>](https://cdn.discordapp.com/attachments/1001972664723832915/1001973391248605214/drink-menu-bot.png)
+![Discord Drink Menu Bot](./docs/images/readme-banner.webp)
 
-> Discord 手搖飲料菜單搜尋機器人
+A Discord slash-command bot for searching and browsing bubble tea shop menus. It displays menu images from saved URLs and lets users manage entries through Discord interactions.
 
-`喝個搖搖` 提供以下功能:
-* 搜尋手搖飲料菜單
-* 隨機手搖飲料菜單
-* 新增手搖飲料菜單
-* 刪除手搖飲料菜單
-* 修改手搖飲料菜單
+## Features
 
-## 使用環境
-| 名稱 | 版本 |
-| - | - |
-| Node.js | 18.4.0 |
-| npm | 8.13.2 |
-| discord.js | 13.8.0 |
+- Search shop names with a case-insensitive keyword of at least two characters.
+- Browse the saved shop list or display a randomly selected menu.
+- Let users add, edit, and delete menu image links through `/drink-menu settings`. Only user IDs listed in `ADMINISTRATION` can manage entries.
+- View bot details with `/bot-info`.
 
-## 如何安裝
-1. 安裝套件
-```sh
-npm i @discordjs/builders
-npm i @discordjs/rest
-npm i dayjs
-npm i discord-api-types
-npm i discord.js
-npm i dotenv
-npm i is-image
+## Requirements
+
+- Node.js `18.4.0`
+- npm `8.13.2`
+- A Discord application and bot
+- Discord user IDs for users allowed to manage menus
+
+## Setup and Run
+
+From the project root, install dependencies:
+
+```bash
+npm install
 ```
 
-2. 複製專案
-```sh
-git clone https://github.com/sky9154/drink-menu-bot.git
+Create a `.env` file in the project root:
+
+```dotenv
+TOKEN=your-discord-bot-token
+CLIENT_ID=your-discord-application-id
+ADMINISTRATION=discord-user-id-1,discord-user-id-2
 ```
 
-3. 新增 `.env` 檔
-```env
-TOKEN=機器人 TOKEN
-CLIENT_ID=機器人 ID
-ADMINISTRATION="管理員 ID (可設定多個管理員，用 "," 區分)"
+Replace the example values with your bot token, application ID, and comma-separated user IDs allowed to manage menu entries. The bot registers its slash commands for the application identified by `CLIENT_ID` when it starts.
+
+Start the bot from the project root:
+
+```bash
+npm start
 ```
 
-4. 執行機器人
-```sh
-npm run start
-```
+Invite the bot to a Discord server where you want to use its slash commands.
 
-## 如何使用
-### search `name`
+## Commands
 
-| 參數 | 類型 | 說明 |
-| - | - | - |
-| [name] | string | tea shop name |
+| Command | Description |
+| --- | --- |
+| `/drink-menu search name:<shop>` | Search for a menu by shop name. The keyword must contain at least two characters. |
+| `/drink-menu list` | Display the saved shop list. |
+| `/drink-menu random` | Display a randomly selected menu. |
+| `/drink-menu settings` | Open menu management controls. Only users listed in `ADMINISTRATION` can use them. |
+| `/bot-info` | Display information about the bot. |
 
-> 回覆搜尋到的手搖飲料菜單
+The settings controls let administrators add, edit, or delete menu entries. Menu entries use image URLs.
 
-### list
-> 回覆目前已知的手搖飲料菜單
+## Menu Data
 
-### random
-> 回覆隨機一個手搖飲料菜單
+Menu records are stored in `src/base/document/drink-menu.json`. Each record contains a shop name, a menu image URL, the user ID of the person who added or edited it, and a date. Changes made through the settings controls are written to this file.
 
-### settings
-> 回覆一個機器人設定集
+## Repository Structure
 
-## 數據模型
-### 數據內容
-```js
-{
-  "menu": Object[], // 手搖飲料菜單資料
-  "total": Number   // 手搖飲料菜單總數
-}
-```
+```text
+Discord Drink Menu Bot/
+├── src/
+│   ├── base/
+│   │   ├── document/
+│   │   │   └── drink-menu.json  # Menu records
+│   │   └── functions/
+│   │       └── json.js          # Menu data operations
+│   ├── commands/                # Slash commands
+│   ├── components/
+│   │   ├── buttons/             # Menu management buttons
+│   │   └── modals/              # Menu management forms
+│   ├── events/client/           # Discord client events
+│   ├── functions/handlers/      # Command, event, and component handlers
+│   └── bot.js                   # Bot entry point
+└── package.json
 
-### 手搖飲料菜單資料
-```js
-{
-  "name": String,   // 手搖飲料店名
-  "menu": String,   // 手搖飲料菜單
-  "user": String,   // 新增編輯人員
-  "date": String    // 新增編輯日期
-}
-```
+## License and Menu Images
 
-## 許可證
-MIT License
-
-Copyright © 2022 oF
+The repository is licensed under the MIT License; see [LICENSE](LICENSE). Menu image URLs refer to third-party content. The rights to those images remain with their respective owners, and use is subject to the terms of the sites that host them.
